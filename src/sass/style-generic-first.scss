@@ -1,0 +1,66 @@
+@import 'base';
+
+@for $i from 1 through 5000 {
+  .bio-#{$i} {
+    background-color: white;
+
+    @include media('>=0', '<small') {
+      padding: 10px;
+      margin: 10px 0;
+    }
+
+    @include media('>=small', '<medium') {
+      max-width: 400px;
+      padding: 20px;
+      margin: 20px auto;
+    }
+
+    @include media('>=medium') {
+      display: flex;
+      align-items: center;
+      width: 100%;
+    }
+
+    @include media('>=medium', '<large') {
+      justify-content: space-between;
+      max-width: 600px;
+      padding: 30px;
+      margin: 30px auto;
+    }
+
+    @include media('>=large') {
+      justify-content: flex-start;
+      max-width: 800px;
+      padding: 40px;
+      margin: 40px auto;
+    }
+
+    @include media('>=huge') {
+      max-width: 1000px;
+      padding: 50px;
+      margin: 50px auto;
+    }
+  }
+
+  .bio-#{$i}__img {
+    width: 100px;
+    height: 100px;
+    background-color: lightgreen;
+    border-radius: 50%;
+    margin: 0 auto 20px;
+
+    @include media('>=medium') {
+      flex-shrink: 0;
+      margin: 0 40px 0 0;
+    }
+  }
+
+  .bio-#{$i}__text {
+    text-align: center;
+
+    @include media('>=medium') {
+      text-align: left;
+    }
+  }
+}
+

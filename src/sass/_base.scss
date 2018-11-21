@@ -1,0 +1,19 @@
+@import '../../node_modules/include-media/dist/include-media';
+
+// Breakpoints
+$bp-small: 320px;
+$bp-medium: 768px;
+$bp-large: 1024px;
+$bp-huge: 1400px;
+
+$breakpoints: (
+        'small': $bp-small,
+        'medium': $bp-medium,
+        'large': $bp-large,
+        'huge': $bp-huge
+);
+
+body {
+  background-color: lightpink;
+  font-family: Helvetica, sans-serif;
+}

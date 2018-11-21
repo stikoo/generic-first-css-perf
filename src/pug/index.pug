@@ -1,0 +1,63 @@
+doctype html
+html(lang="en")
+head
+    title= "Generic First CSS"
+    script(type='text/javascript').
+        performance.mark("head-start");
+
+    link(rel="stylesheet", type="text/css", href="style.css")
+
+    body
+        script(type='text/javascript').
+            performance.mark("body-start");
+
+        #container
+            h1#anchor-top Testing the render speed of Mobile First CSS
+
+            ul
+                li: a(href="/index.html") Example #1 - Mobile first with cascading media queries
+                li: a(href="/generic-first.html") Example #2 - Generic first with compartmentalised media queries
+
+            pre#log
+
+            - for (var i = 1; i < 5000; i++)
+                div(class='bio-' + i)
+                    div(class='bio-' + i + '__img')
+                    div(class='bio-' + i + '__text')
+                        h3 Alastair Hodgson
+                        p.
+                            Alastair has been lovingly crafting the frontend of websites for over 10 years and has
+                            learnt a trick or two about clean sane codebases. What a journey it's been!
+                            #[a(href="http://twitter.com/stikoo") @stikoo].
+
+        script(type='text/javascript').
+            performance.mark("body-end");
+
+            performance.measure(
+                "all",
+                "head-start",
+                "body-end"
+            );
+
+            performance.measure(
+                "body",
+                "body-start",
+                "body-end"
+            );
+
+            // Get all of the measures out.
+            // In this case there is only one.
+            var measuresAll = performance.getEntriesByName("all");
+            var measureAll = measuresAll[0].duration;
+
+            var measuresBody = performance.getEntriesByName("body");
+            var measureBody = measuresBody[0].duration;
+
+            document.getElementById('log').innerHTML =
+            "From top of HEAD: " + (measureAll).toFixed(2) + " ms" + "<br>" +
+            "From top of BODY: " + (measureBody).toFixed(2) + " ms" + "<br>" +
+            "Difference of:    " + (measureAll - measureBody).toFixed(2) + " ms";
+
+            // Clean up the stored markers.
+            performance.clearMarks();
+            performance.clearMeasures();
